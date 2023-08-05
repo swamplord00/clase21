@@ -88,38 +88,27 @@ const login=async(req,res)=>{
     const emailLowerCase=email.toLowerCase()
     const passwordHash=hashPassword(password)
     
-
-
-    try {
-        
+    try {     
         const userValidated=await User.findOne({email:emailLowerCase})
         if(!userValidated){
             return res.status(401).json({
                 message:'Usuario no registrado'
             })
-        }
-
-        
+        }        
         console.log(`${userValidated.password} vs ${passwordHash}`)
         if(userValidated.password===passwordHash){
             console.log(`coinciden`)
             const token=generateToken(userValidated)
-            return res.status(200).json({
-                
+            return res.status(200).json({      
                 message: 'User logged in successfully',
-                
-                token
-                
+                userId:userValidated._id,     
+                token       
             });
         }else{
             return res.status(401).json({
                 message:'Invalid Password'
             })
         }
-        
-
-
-
         
     } catch (error) {
         return res.status(500).json({
@@ -128,10 +117,35 @@ const login=async(req,res)=>{
     }
 }
 
+const getUserById=async(req,res)=>{
+    const{_id}=req.params
+    try {
+        const user=await User.findOne({_id})
+        if(user){
+            return res.status(200).json({
+                message:'ok',
+                detail:user
+            })
+        }
+        return res.status(404).json({
+            message:'Not found'
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            message:'Server Error',
+            error
+        })
+    }
+    
+
+}
+
 module.exports={
     signup,
     getUsers,
     updateUser,
     deleteUser,
-    login
+    login,
+    getUserById
 }

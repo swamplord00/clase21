@@ -1,5 +1,7 @@
 require("dotenv").config();
 require('./models/User.model')
+
+const cors=require('cors')
 const userRoutes=require('./routes/User.routes')
 
 const express = require("express");
@@ -11,13 +13,11 @@ mongoose.connect(process.env.MONGO_URI + 'tienda');
 
 const port = process.env.PORT;
 
-//creo la coleccion
-// const User = mongoose.model("User", {
-//   username: String,
-//   lastname: String,
-//   password: String,
-// });
-
+const corsOptions={
+    origin:process.env.FRONTEND_URL,
+    optionsSuccessStatus:200
+}
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use('/users',userRoutes)
 
