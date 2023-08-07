@@ -136,9 +136,49 @@ const getUserById=async(req,res)=>{
             message:'Server Error',
             error
         })
-    }
-    
-
+    }   
+}
+const deleteUserById=async(req,res)=>{
+    const{_id}=req.params
+    try {
+        const resp=await User.findByIdAndDelete(_id)
+        if(resp){            
+            return res.status(200).json({
+            messege:"ok",
+            detail:resp,
+        })
+        }
+        return res.status(404).json({
+            message:'Not found'
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            message:'Server Error',
+            error
+        })
+    }   
+}
+const updateUserById=async(req,res)=>{
+    const{_id,userUpdated}=req.params
+    try {
+        const resp=await User.findByIdAndUpdate(_id,userUpdated, {new:true})
+        if(resp){            
+            return res.status(200).json({
+            messege:"ok",
+            detail:resp,
+        })
+        }
+        return res.status(404).json({
+            message:'Not found'
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            message:'Server Error',
+            error
+        })
+    }   
 }
 
 module.exports={
@@ -147,5 +187,6 @@ module.exports={
     updateUser,
     deleteUser,
     login,
-    getUserById
+    getUserById,
+    deleteUserById
 }
