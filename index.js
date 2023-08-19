@@ -3,6 +3,7 @@ require('./models/User.model')
 
 const cors=require('cors')
 const userRoutes=require('./routes/User.routes')
+const paymentRoutes=require('./routes/Payment.routes.js')
 
 const express = require("express");
 const app = express();
@@ -20,6 +21,7 @@ const corsOptions={
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use('/users',userRoutes)
+app.use('/payment',paymentRoutes)
 
 app.get("/", (req, res) => {
   res.status(200).json({

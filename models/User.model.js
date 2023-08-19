@@ -36,6 +36,7 @@ const UserSchema=new mongoose.Schema({
     rol:{
         type: String,
         require: false,
+        default:'USER'
     },
     premium:{
         type: Boolean,
@@ -46,6 +47,7 @@ const UserSchema=new mongoose.Schema({
         type: Date,
         require: false,
     },
+    
 
 
 },{

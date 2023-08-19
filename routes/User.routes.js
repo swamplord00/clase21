@@ -19,4 +19,6 @@ router.get('/:_id',auth,getUserById)
 
 router.delete('/:_id',auth,deleteUserById)
 
+
+
 module.exports=router;
