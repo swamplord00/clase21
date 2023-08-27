@@ -3,22 +3,24 @@ const mongoose=require('mongoose')
 const Product=mongoose.model('Product')
 
 const createProduct=async(req,res)=>{
-    const {titulo,id,precio,img}=req.body
+    const {titulo,catalogo_estilo_id,catalogo_tipo_id,catalogo_genero_id,stock,temporada,activo,marca,precio,img}=req.body
     console.log(req.body)
-
-    if(img=={}){
-        img={
-            thumbnail:'https://uhcl-ir.tdl.org/bitstream/handle/10657.1/1567/not-available.jpg.jpg?sequence=1&isAllowed=y',
-            imageZoom:'https://uhcl-ir.tdl.org/bitstream/handle/10657.1/1567/not-available.jpg.jpg?sequence=1&isAllowed=y',
-        }
-    }
+    
     try {
         const product=new Product({
             titulo,
-            id,
+            catalogo_estilo_id,
+            catalogo_genero_id,
+            catalogo_tipo_id,
+            stock,
+            temporada,
+            activo,
+            marca,
             precio,
-            img
+            img,
+
         })
+        console.log(product)
         const resp=await product.save()
         return res.status(201).json({
             message: "Product created",
@@ -40,7 +42,7 @@ const getProducts=async(req,res)=>{
         const resp=await Product.find()
         return res.status(200).json({
             message:'OK',
-            datail:resp
+            detail:resp
         })
     } catch (error) {
         return res.status(500).json({

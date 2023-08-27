@@ -5,10 +5,7 @@ const ProductSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
-    id:{
-        type:Number,
-        require:true,
-    },
+    
     catalogo_tipo_id:{
         type:String,
         require:false,
@@ -61,10 +58,14 @@ const ProductSchema= new mongoose.Schema({
     },
     img:{
         type:Object,
-        require:true,
+        require:false,
         // images:[
         //     {thumbnail:String,ImageZoom:String}
         // ]
+        default:{
+            thumbnail:'https://uhcl-ir.tdl.org/bitstream/handle/10657.1/1567/not-available.jpg.jpg?sequence=1&isAllowed=y',
+            imageZoom:'https://uhcl-ir.tdl.org/bitstream/handle/10657.1/1567/not-available.jpg.jpg?sequence=1&isAllowed=y',
+        }
     },
     activo:{
         type:Boolean,
