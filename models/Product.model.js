@@ -1,29 +1,88 @@
 const mongoose= require('mongoose')
 
 const ProductSchema= new mongoose.Schema({
-    productName:{
+    titulo:{
         type:String,
         required:true,
-        validate: {
-            validator:function(v){
-                return /^[a-zA-Z0-9 ]{3,30}$/.test(v)
-            },
-        }
     },
-    sku:{
-        type:String,
-        require:true,
-    },
-    category:{
-        type:String,
-        require:true,
-
-    },
-    stock:{
+    id:{
         type:Number,
         require:true,
+    },
+    catalogo_tipo_id:{
+        type:String,
+        require:false,
+        default:"Otros"
 
     },
+    catalogo_genero_id:{
+        type:String,
+        require:false,
+        default:"Unisex"
+
+    },
+    catalogo_estilo_id:{
+        type:String,
+        require:false,
+        default:"NO"
+    },
+    stock:{
+        type:Array,
+        require:false,
+        default:[
+            {},
+        ]
+
+        // inventario:[{
+        //     tamanio:String,
+        //     qty:Number,
+        //     dimensiones:String,
+        //     color:String,
+        // }],
+    },
+    precio:{
+        type:Number,
+        require:true,
+    },
+    temporada:{
+        type:String,
+        require:false,
+        default:"AllSeason"
+    },
+    valoracion:{
+        type:Number,
+        require:false,
+        default:0
+    },
+    vendidos:{
+        type:Number,
+        require:false,
+        default:0
+    },
+    img:{
+        type:Object,
+        require:true,
+        // images:[
+        //     {thumbnail:String,ImageZoom:String}
+        // ]
+    },
+    activo:{
+        type:Boolean,
+        require:false,
+        default:false
+    },
+    marca:{
+        type:String,
+        require:false,
+        default:'Genérica'
+    }
+    
     
 
 })
+
+
+const Product=mongoose.model('Product',ProductSchema)
+
+
+module.exports=Product

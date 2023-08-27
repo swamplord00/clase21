@@ -1,9 +1,11 @@
 require("dotenv").config();
 require('./models/User.model')
+require('./models/Product.model')
 
 const cors=require('cors')
 const userRoutes=require('./routes/User.routes')
 const paymentRoutes=require('./routes/Payment.routes.js')
+const productRouter=require('./routes/Product.routes')
 
 const express = require("express");
 const app = express();
@@ -22,6 +24,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use('/users',userRoutes)
 app.use('/payment',paymentRoutes)
+app.use('/products',productRouter)
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -30,12 +33,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-//   const victor = new User({
-//     username: "Victor",
-//     lastname:"Briones",
-//     password: "victor",
-//   });
-//   victor.save();
   res.status(200).json({
     mensaje: "ruta post",
     detail: "",
