@@ -23,6 +23,10 @@ const ProductSchema= new mongoose.Schema({
         require:false,
         default:"NO"
     },
+    catalogo:{
+        type:String,
+        require:true,
+    },
     stock:{
         type:Array,
         require:false,
