@@ -3,7 +3,7 @@ const mongoose=require('mongoose')
 const Product=mongoose.model('Product')
 
 const createProduct=async(req,res)=>{
-    const {titulo,catalogo_estilo_id,catalogo_tipo_id,catalogo_genero_id,stock,temporada,activo,marca,precio,img}=req.body
+    const {titulo,catalogo_estilo_id,catalogo_tipo_id,catalogo_genero_id,catalogo,stock,temporada,activo,marca,precio,img}=req.body
     console.log(req.body)
     
     try {
@@ -12,6 +12,7 @@ const createProduct=async(req,res)=>{
             catalogo_estilo_id,
             catalogo_genero_id,
             catalogo_tipo_id,
+            catalogo,
             stock,
             temporada,
             activo,

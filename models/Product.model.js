@@ -8,28 +8,28 @@ const ProductSchema= new mongoose.Schema({
     
     catalogo_tipo_id:{
         type:String,
-        require:false,
+        required:false,
         default:"Otros"
 
     },
     catalogo_genero_id:{
         type:String,
-        require:false,
+        required:false,
         default:"Unisex"
 
     },
     catalogo_estilo_id:{
         type:String,
-        require:false,
+        required:false,
         default:"NO"
     },
     catalogo:{
         type:String,
-        require:true,
+        required:true
     },
     stock:{
         type:Array,
-        require:false,
+        required:false,
         default:[
             {},
         ]
@@ -43,26 +43,26 @@ const ProductSchema= new mongoose.Schema({
     },
     precio:{
         type:Number,
-        require:true,
+        required:true,
     },
     temporada:{
         type:String,
-        require:false,
+        required:false,
         default:"AllSeason"
     },
     valoracion:{
         type:Number,
-        require:false,
+        required:false,
         default:0
     },
     vendidos:{
         type:Number,
-        require:false,
+        required:false,
         default:0
     },
     img:{
         type:Object,
-        require:false,
+        required:false,
         // images:[
         //     {thumbnail:String,ImageZoom:String}
         // ]
@@ -73,12 +73,12 @@ const ProductSchema= new mongoose.Schema({
     },
     activo:{
         type:Boolean,
-        require:false,
+        required:false,
         default:false
     },
     marca:{
         type:String,
-        require:false,
+        required:false,
         default:'Genérica'
     }
     
