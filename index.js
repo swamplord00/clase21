@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI + 'tienda');
 const port = process.env.PORT;
 
 const corsOptions={
-    origin:process.env.FRONTEND_URL,
+    origin:[process.env.FRONTEND_URL,process.env.FRONTEND_URL_DEV],
     optionsSuccessStatus:200
 }
 app.use(cors(corsOptions))
